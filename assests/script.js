@@ -1,21 +1,22 @@
 
+  
+
 $(document).ready(function () {
 
-    $("#select-city").on("click", function (e) {
-      console.log("run search was clicked");
-      e.preventDefault();
-  
-      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-      var queryForecast = "https://api.openweathermap.org/data/2.5/forecast?q=";
+    function selectCities (cityname) {
 
-      var cityNames = $("#city-input").val().trim().toLowerCase();
       var apiKey = "2bbd84d695f75e90260a321f5b80b8b5";
-  
+      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+      var queryForecast = "https://api.openweathermap.org/data/2.5/forecast?q=";  
+
+      console.log("run search was clicked");
+
       $.ajax({
-        url:  queryURL + cityNames + "&units=imperial&appid=" + apiKey,
+        url:  queryURL + cityname + "&units=imperial&appid=" + apiKey,
         method: "GET",
       }).then(function (response) {
         console.log(response);
+        $("#current").empty();
 
         var newDiv = $("<div class='new-div'>");
         $("#current").prepend(newDiv);
@@ -24,19 +25,18 @@ $(document).ready(function () {
         var date = $("<h6>").text(moment().format("dddd, MMMM Do"));
         cityHeading.append(date);
 
-
         var temperature = $("<p>").text("Temperature: " + response.main.temp + "°F");
         var humidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
         var windSpeed = $("<p>").text("Wind Speed " + response.wind.speed + "MPH");
 
         $(newDiv).append(cityHeading, temperature, humidity, windSpeed);
+        })
 
+      var lat = response.coord.lat;
+      var lon = response.coord.lon;
+      var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=2bbd84d695f75e90260a321f5b80b8b5&lat=" + lat  + "&lon=" + lon;
 
-       var lat = response.coord.lat;
-       var lon = response.coord.lon;
-       var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=2bbd84d695f75e90260a321f5b80b8b5&lat=" + lat  + "&lon=" + lon;
-
-        //call for uv measurement
+        //call for uv measurementS
         $.ajax({
             url: queryURLUV,
             method: 'GET'
@@ -73,15 +73,19 @@ $(document).ready(function () {
             else if(uv.value > 0 && uv.value < 2) {
                 uvIndex.css("background-color", "green");
             }
+          }
       });
+    
 
       $.ajax({
-        url:  queryForecast + cityNames + "&units=imperial&appid=" + apiKey,
+        url:  queryForecast + cityname + "&units=imperial&appid=" + apiKey,
         method: "GET",
       }).then(function (res) {
         console.log(res);
         $("#five-day").empty();
         var results = res.list;
+
+        // - loop over the list every 8 items - should loop five times over five days to get the weather at 18:00pm each day.
         for(var i = 0; i < results.length; i += 8) {
 
         var cardBody = $("<div class='card shadow-lg text-white bg-primary mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem;'>");
@@ -99,37 +103,32 @@ $(document).ready(function () {
 
         cardBody.append(h5date, pTemp, pHum);
         $("#five-day").append(cardBody);
-  
         }
+  
       });
-      function saveLocal () {
 
-      localStorage.setItem('cityName', JSON.stringify(cityNames));
+      $("#select-city").on("click", function (e) {
+        e.preventDefault();
 
-      var storeCities = [];
-      storeCities.push(cityNames)
-      console.log(storeCities);
-      }
+       var cityInput = $("#city-input").val().trim().toLowerCase();
 
-      saveLocal();
-      getLocal();
+       localStorage.setItem("city name" , JSON.stringify(cityInput));
+       localStorage.getItem("city name", JSON.stringify(cityInput));
 
-      function getLocal () {
+       var searchText = $("<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>").text(cityInput);
+       searchText.attr("id", "history-button");
+ 
+       var searchDiv = $("<div>");
+       searchDiv.append(searchText)
+       $("#search-history").append(searchText);
 
-        localStorage.getItem('cityName', JSON.stringify(cityNames));
-        var searchText = $("<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>").text(cityNames);
-        searchText.attr("id", "history-button");
-        var searchDiv = $("<div>");
-        searchDiv.append(searchText)
-        $("#search-history").append(searchText);
+      selectCities(cityInput);
+      });
 
-      }
+    $("#history-button").on("click", function (event) {
+      event.preventDefault();
+      ("run search was clicked");
+     
     })
-    });
-
-    $("#history-button").on("click", function () {
-
-    })
-
 });
   
