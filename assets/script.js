@@ -1,7 +1,4 @@
-
-
 $(document).ready(function () {
-
   function selectCities(cityname) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
     var apiKey = "2bbd84d695f75e90260a321f5b80b8b5";
@@ -82,7 +79,9 @@ $(document).ready(function () {
       });
     });
 
-     //----------------------------------------------------------------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------------------------------------------------------------//
+
+    // third api call for five day forecast.
 
     var queryForecast = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
@@ -91,70 +90,73 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (res) {
       console.log(res);
+
+      //empty section upon submit
       $("#five-day").empty();
+      //attach variable to list of dates.
       var results = res.list;
 
       // - loop over the list every 8 items - should loop five times over five days to get the weather at 18:00pm each day.
       for (var i = 0; i < results.length; i += 8) {
+        //build five cards with required information
         var cardBody = $(
           "<div class='card shadow-lg text-white bg-primary mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem;'>"
         );
         cardBody.attr("id", "card-body");
 
+        //variables to store information.
         var dateTwo = results[i].dt_txt;
         var setD = dateTwo.substr(0, 10);
         var temp = results[i].main.temp;
         var hum = results[i].main.humidity;
-        console.log();
 
+        //variables to assign text.
         var h5date = $("<h5 class='card-title'>").text(setD);
         var pTemp = $("<p class='card-text'>").text(
           "Temperature: " + temp + "°F"
         );
         var pHum = $("<p class='card-text'>").text("Humidity " + hum + "%");
 
+        //append text to cardbody.
         cardBody.append(h5date, pTemp, pHum);
+        //append card to html section.
         $("#five-day").append(cardBody);
       }
     });
   }
 
-   //----------------------------------------------------------------------------------------------------------------------------------//
+  //----------------------------------------------------------------------------------------------------------------------------------//
 
   $("#select-city").on("click", function (e) {
     e.preventDefault();
     var cityname = $("#city-input").val().trim().toLowerCase();
-
 
     //save user input to local storage
     JSON.parse(localStorage.getItem(cityname));
     localStorage.setItem(cityname, JSON.stringify(cityname));
 
     //create search button.
-      var searchBtn = $(
-        "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
-      ).text(cityname);
-      $("#history-section").append(searchBtn);
+    var searchBtn = $(
+      "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
+    ).text(cityname);
+    $("#history-section").append(searchBtn);
 
-    //give it an onclick function - when button is pressed it retrieves the text within it, 
+    //give it an onclick function - when button is pressed it retrieves the text within it,
     //which is save as city, and then the main function is ran again with var city as argument.
     //runs main function for history section
-    searchBtn[0].onclick = function(e){  
+    searchBtn[0].onclick = function (e) {
       e.preventDefault();
       var city = $(this).text();
       console.log(city);
-   
-      selectCities(city);
-      
-      console.log("fired");  
-    }
 
-    //runs main function on input. 
+      selectCities(city);
+
+      console.log("fired");
+    };
+
+    //runs main function on input.
     selectCities(cityname);
   });
 
-   //----------------------------------------------------------------------------------------------------------------------------------//
-
-
-  
+  //----------------------------------------------------------------------------------------------------------------------------------//
 });
