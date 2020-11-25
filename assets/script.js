@@ -13,11 +13,13 @@ $(document).ready(function () {
       console.log(response);
       $("#current").empty();
 
+      //new div to layout single day information
       var newDiv = $("<div class='new-div'>");
       $("#current").prepend(newDiv);
 
+      //text from api object
       var cityHeading = $("<h3>").text(response.name);
-      var date = $("<h6>").text(moment().format("dddd, MMMM Do"));
+      var date = $("<h6>").text(moment().format("dddd, MMMM Do")); //moment.js to store date.
       cityHeading.append(date);
 
       var temperature = $("<p>").text(
@@ -52,6 +54,7 @@ $(document).ready(function () {
         var uvIntro = $("<p>").text("UV Index: ");
         newDiv.append(uvIntro);
 
+        //uv button
         var uvDiv = $("<div>").attr("id", "uv-div");
         var uvText = $("<p>");
         uvText.css("color", "white");
@@ -121,6 +124,12 @@ $(document).ready(function () {
         cardBody.append(h5date, pTemp, pHum);
         //append card to html section.
         $("#five-day").append(cardBody);
+
+        //----------------------------------------------------------------------------------------------------------------------------------//
+
+        //weather symbols
+
+
       }
     });
   }
@@ -159,4 +168,8 @@ $(document).ready(function () {
   });
 
   //----------------------------------------------------------------------------------------------------------------------------------//
+  
+  // clear button
+
+
 });
