@@ -6,6 +6,7 @@ $(document).ready(function () {
     var apiKey = "2bbd84d695f75e90260a321f5b80b8b5";
 
     console.log("run search was clicked");
+    $("#city-input").val(""); //empty input after submit
 
     $.ajax({
       url: queryURL + cityname + "&units=imperial&appid=" + apiKey,
@@ -122,6 +123,7 @@ $(document).ready(function () {
         "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
       ).text(cityname);
       $("#history-section").append(searchBtn);
+
     searchBtn[0].onclick = function(e){  
       e.preventDefault();
       var city = $(this).text();
