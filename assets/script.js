@@ -30,6 +30,7 @@ $(document).ready(function () {
         "Wind Speed " + response.wind.speed + "MPH"
       );
 
+      //append last
       $(newDiv).append(cityHeading, temperature, humidity, windSpeed);
 
       //----------------------------------------------------------------------------------------------------------------------------------//
