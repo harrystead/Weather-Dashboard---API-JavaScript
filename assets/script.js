@@ -30,10 +30,35 @@ $(document).ready(function () {
         "Wind Speed " + response.wind.speed + "MPH"
       );
 
-      //append last
-      $(newDiv).append(cityHeading, temperature, humidity, windSpeed);
-
       //----------------------------------------------------------------------------------------------------------------------------------//
+
+      // symbol for single day:
+      console.log(response.weather[0].main);
+      var currentweather = response.weather[0].main;
+
+        if (currentweather === "Rain") {
+            var currentIcon = $('<img>').attr("src", "http://openweathermap.org/img/wn/09d.png");
+            currentIcon.attr("style", "height: 60px; width: 60px");
+        } else if (currentweather=== "Clouds") {
+            var currentIcon = $('<img>').attr("src", "http://openweathermap.org/img/wn/03d.png");
+            currentIcon.attr("style", "height: 60px; width: 60px");
+        } else if (currentweather === "Clear") {
+            var currentIcon = $('<img>').attr("src", "http://openweathermap.org/img/wn/01d.png");
+            currentIcon.attr("style", "height: 60px; width: 60px");
+        }
+         else if (currentweather === "Drizzle") {
+            var currentIcon = $('<img>').attr("src", "http://openweathermap.org/img/wn/10d.png");
+            currentIcon.attr("style", "height: 60px; width: 60px");
+        }
+         else if (currentweather === "Snow") {
+            var currentIcon = $('<img>').attr("src", "http://openweathermap.org/img/wn/13d.png");
+            currentIcon.attr("style", "height: 60px; width: 60px");
+        }
+
+           //append last
+      $(newDiv).append(cityHeading, currentIcon, temperature, humidity, windSpeed);
+
+         //----------------------------------------------------------------------------------------------------------------------------------//
 
       //retrieve coordinates from first api call.
       var lat = response.coord.lat;
@@ -128,7 +153,8 @@ $(document).ready(function () {
 
         //----------------------------------------------------------------------------------------------------------------------------------//
 
-        //weather symbols
+        //weather symbols for five day
+
 
 
       }
