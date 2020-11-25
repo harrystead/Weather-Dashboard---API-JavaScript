@@ -116,14 +116,20 @@ $(document).ready(function () {
     e.preventDefault();
     var cityname = $("#city-input").val().trim().toLowerCase();
 
+
+    //save user input to local storage
     JSON.parse(localStorage.getItem(cityname));
     localStorage.setItem(cityname, JSON.stringify(cityname));
 
+    //create search button.
       var searchBtn = $(
         "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
       ).text(cityname);
       $("#history-section").append(searchBtn);
 
+    //give it an onclick function - when button is pressed it retrieves the text within it, 
+    //which is save as city, and then the main function is ran again with var city as argument.
+    //runs main function for history section
     searchBtn[0].onclick = function(e){  
       e.preventDefault();
       var city = $(this).text();
@@ -131,9 +137,10 @@ $(document).ready(function () {
    
       selectCities(city);
       
-      console.log("hey");  
+      console.log("fired");  
     }
 
+    //runs main function on input. 
     selectCities(cityname);
   });
 
