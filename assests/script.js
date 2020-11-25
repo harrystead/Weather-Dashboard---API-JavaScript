@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
   function selectCities(cityname) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -115,29 +113,25 @@ $(document).ready(function () {
     e.preventDefault();
     var cityname = $("#city-input").val().trim().toLowerCase();
 
-   localStorage.getItem(cityname);
-   
+    localStorage.getItem(cityname);
     localStorage.setItem(cityname, JSON.stringify(cityname));
-    
-      searchDiv = $(
-        "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
-      ).text(cityname);
-  
-      $("#search-history").append(searchDiv);
+
+    searchDiv = $(
+      "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
+    ).text(cityname);
+    searchDiv.attr("id", "historyBtn");
+    $("#search-history").append(searchDiv);
 
     selectCities(cityname);
   });
 
-  $("#search-history").on("click", function (event) {
-   event.preventDefault();
-   console.log("fired - 2");
+  $("#history-section").on("click", function (event) {
+    event.preventDefault();
+    console.log("history button fired");
 
-   var city = $(this).text();
-   console.log(city);
+    var city = $(this).text();
+    console.log(city);
 
-   selectCities(city);
-
-
-
+    selectCities(city, );
   });
 });
