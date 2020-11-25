@@ -1,6 +1,7 @@
 
 
 $(document).ready(function () {
+
   function selectCities(cityname) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
     var apiKey = "2bbd84d695f75e90260a321f5b80b8b5";
@@ -32,15 +33,19 @@ $(document).ready(function () {
 
       $(newDiv).append(cityHeading, temperature, humidity, windSpeed);
 
+      //----------------------------------------------------------------------------------------------------------------------------------//
+
+      //retrieve coordinates from first api call.
       var lat = response.coord.lat;
       var lon = response.coord.lon;
+      //call api
       var queryURLUV =
         "https://api.openweathermap.org/data/2.5/uvi?&appid=2bbd84d695f75e90260a321f5b80b8b5&lat=" +
         lat +
         "&lon=" +
         lon;
 
-      //call for uv measurementS
+      //call for uv measurements
       $.ajax({
         url: queryURLUV,
         method: "GET",
@@ -77,6 +82,8 @@ $(document).ready(function () {
       });
     });
 
+     //----------------------------------------------------------------------------------------------------------------------------------//
+
     var queryForecast = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
     $.ajax({
@@ -112,6 +119,8 @@ $(document).ready(function () {
     });
   }
 
+   //----------------------------------------------------------------------------------------------------------------------------------//
+
   $("#select-city").on("click", function (e) {
     e.preventDefault();
     var cityname = $("#city-input").val().trim().toLowerCase();
@@ -143,6 +152,8 @@ $(document).ready(function () {
     //runs main function on input. 
     selectCities(cityname);
   });
+
+   //----------------------------------------------------------------------------------------------------------------------------------//
 
 
   
