@@ -129,10 +129,22 @@ $(document).ready(function () {
 
        //----------------------------------------------------------------------------------------------------------------------------------//
 
+       // pixabay api - still awaiting full access, so doesn't work for most cities.
+       $.ajax({
+        url: "https://pixabay.com/api/?key=19275947-8e03c0cef66a2d07d81888dc3&q="+ cityname + "+city+urban+afternoon&image_type=photo",
+        method: "GET",
+      }).then(function (maps) {
+        console.log(maps);
+
+        var cityImage = maps.hits[0];
+        console.log(cityImage.webformatURL);
 
 
 
-    https://maps.googleapis.com/maps/api/place/photo?photoreference=PHOTO_REF&key=API_KEY&maxwidth=400&maxheight=400
+
+      })
+
+
 
     //----------------------------------------------------------------------------------------------------------------------------------//
 
