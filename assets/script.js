@@ -241,15 +241,21 @@ $(document).ready(function () {
     JSON.parse(localStorage.getItem(cityname));
     localStorage.setItem(cityname, JSON.stringify(cityname));
 
+    //prevent from creating a button for an input without text 
+    var empty = $("#city-input").val().length == 0;
+
+    if(empty) {
+      return false
+    }
+    else {
     //create search button.
     var searchBtn = $(
       "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
     ).text(cityname);
     searchBtn.attr("id", "history-search")
     $("#city-list").append(searchBtn);
-
     //give it an onclick function - when button is pressed it retrieves the text within it,
-    //which is save as city, and then the main function is ran again with var city as argument.
+    //which is saved as city, and then the main function is ran again with var city as argument.
     //runs main function for history section
     searchBtn[0].onclick = function (e) {
       e.preventDefault();
@@ -260,6 +266,10 @@ $(document).ready(function () {
 
       console.log("fired");
     };
+  }
+
+
+
 
     //runs main function on input.
     selectCities(cityname);
