@@ -63,8 +63,13 @@ h4 {
     border: black 1px ;
 }
 
+#history-search {
+    height: 30px;
+    font-size: 14px;
+    color: black;
+}
+
 #image-city:hover {
     filter: brightness(110%);
     cursor: pointer;
-
 }

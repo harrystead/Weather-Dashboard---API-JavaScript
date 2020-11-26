@@ -268,9 +268,6 @@ $(document).ready(function () {
     };
   }
 
-
-
-
     //runs main function on input.
     selectCities(cityname);
   });
