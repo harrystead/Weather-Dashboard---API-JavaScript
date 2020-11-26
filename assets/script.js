@@ -127,25 +127,27 @@ $(document).ready(function () {
       });
     });
 
-       //----------------------------------------------------------------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------------------------------------------------------------//
 
-       //pixabay api - gained full access, so is working for all cities now.
-       $.ajax({
-        url: "https://pixabay.com/api/?key=19275947-8e03c0cef66a2d07d81888dc3&q="+ cityname + "+city+urban&image_type=photo",
-        method: "GET",
-      }).then(function (maps) {
-        console.log(maps);
+    //pixabay api - gained full access, so is working for all cities now.
+    $.ajax({
+      url:
+        "https://pixabay.com/api/?key=19275947-8e03c0cef66a2d07d81888dc3&q=" +
+        cityname +
+        "+city+urban&image_type=photo",
+      method: "GET",
+    }).then(function (maps) {
+      console.log(maps);
 
-        var cityImage = maps.hits[4];
-        console.log(maps.hits[0]);
+      var cityImage = maps.hits[4];
+      console.log(maps.hits[0]);
 
-        var image = $("<img>");
-        image.attr("src", cityImage.webformatURL);
-        image.attr("id", "image-city")
+      var image = $("<img>");
+      image.attr("src", cityImage.webformatURL);
+      image.attr("id", "image-city");
 
-        $("#id-card").append(image);
-
-      })
+      $("#id-card").append(image);
+    });
 
     //----------------------------------------------------------------------------------------------------------------------------------//
 
@@ -165,7 +167,7 @@ $(document).ready(function () {
       var results = res.list;
 
       // - loop over the list every 8 items - should loop five times over five days to get the weather at 18:00pm each day.
-      for (var i = 0; i < results.length; i += 8) {
+      for (var i = 2; i < results.length; i += 8) {
         //build five cards with required information
         var cardBody = $(
           "<div class='card shadow-lg text-white bg-primary mx-auto mb-10 p-2' style='width: 11rem; height: 13rem;'>"
@@ -223,10 +225,10 @@ $(document).ready(function () {
           symbolFive.attr("style", "height: 60px; width: 60px");
         }
 
-              //append text to cardbody.
-              cardBody.append(h5date, pTemp, pHum, symbolFive);
-              //append card to html section.
-              $("#five-day").append(cardBody);
+        //append text to cardbody.
+        cardBody.append(h5date, pTemp, pHum, symbolFive);
+        //append card to html section.
+        $("#five-day").append(cardBody);
       }
     });
   }
@@ -241,32 +243,31 @@ $(document).ready(function () {
     JSON.parse(localStorage.getItem(cityname));
     localStorage.setItem(cityname, JSON.stringify(cityname));
 
-    //prevent from creating a button for an input without text 
+    //prevent from creating a button for an input without text
     var empty = $("#city-input").val().length == 0;
 
-    if(empty) {
-      return false
+    if (empty) {
+      return false;
+    } else {
+      //create search button.
+      var searchBtn = $(
+        "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
+      ).text(cityname);
+      searchBtn.attr("id", "history-search");
+      $("#city-list").append(searchBtn);
+      //give it an onclick function - when button is pressed it retrieves the text within it,
+      //which is saved as city, and then the main function is ran again with var city as argument.
+      //runs main function for history section
+      searchBtn[0].onclick = function (e) {
+        e.preventDefault();
+        var city = $(this).text();
+        console.log(city);
+
+        selectCities(city);
+
+        console.log("fired");
+      };
     }
-    else {
-    //create search button.
-    var searchBtn = $(
-      "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
-    ).text(cityname);
-    searchBtn.attr("id", "history-search")
-    $("#city-list").append(searchBtn);
-    //give it an onclick function - when button is pressed it retrieves the text within it,
-    //which is saved as city, and then the main function is ran again with var city as argument.
-    //runs main function for history section
-    searchBtn[0].onclick = function (e) {
-      e.preventDefault();
-      var city = $(this).text();
-      console.log(city);
-
-      selectCities(city);
-
-      console.log("fired");
-    };
-  }
 
     //runs main function on input.
     selectCities(cityname);
