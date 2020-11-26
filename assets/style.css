@@ -41,5 +41,10 @@
 #history-section {
     padding-left: 100px;
     font-size: 18px;
+}
+
+#image-city:hover {
+    filter: brightness(110%);
+    cursor: pointer;
 
 }

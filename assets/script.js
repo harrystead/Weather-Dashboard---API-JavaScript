@@ -196,31 +196,31 @@ $(document).ready(function () {
             "src",
             "http://openweathermap.org/img/wn/09d.png"
           );
-          symbolFive.attr("style", "height: 40px; width: 40px");
+          symbolFive.attr("style", "height: 60px; width: 60px");
         } else if (weather === "Clouds") {
           var symbolFive = $("<img>").attr(
             "src",
             "http://openweathermap.org/img/wn/03d.png"
           );
-          symbolFive.attr("style", "height: 40px; width: 40px");
+          symbolFive.attr("style", "height: 60px; width: 60px");
         } else if (weather === "Clear") {
           var symbolFive = $("<img>").attr(
             "src",
             "http://openweathermap.org/img/wn/01d.png"
           );
-          symbolFive.attr("style", "height: 40px; width: 40px");
+          symbolFive.attr("style", "height: 60px; width: 60px");
         } else if (weather === "Drizzle") {
           var symbolFive = $("<img>").attr(
             "src",
             "http://openweathermap.org/img/wn/10d.png"
           );
-          symbolFive.attr("style", "height: 40px; width: 40px");
+          symbolFive.attr("style", "height: 60px; width: 60px");
         } else if (weather === "Snow") {
           var symbolFive = $("<img>").attr(
             "src",
             "http://openweathermap.org/img/wn/13d.png"
           );
-          symbolFive.attr("style", "height: 40px; width: 40px");
+          symbolFive.attr("style", "height: 60px; width: 60px");
         }
 
               //append text to cardbody.
