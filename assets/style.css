@@ -1,3 +1,5 @@
+
+
 #card-body:hover {
     opacity: 0.8;
     cursor: pointer;
@@ -22,3 +24,17 @@
     left: 30rem;
     top: 0.7rem;
 }
+
+#select-city {
+    width: 60px;
+    height: 27px;
+}
+
+#city-input {
+    height: 30px;
+}
+
+.navbar {
+    height: 120px;
+}
+
