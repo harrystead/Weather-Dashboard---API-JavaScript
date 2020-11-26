@@ -32,15 +32,35 @@
 
 #city-input {
     height: 30px;
+
 }
 
-.navbar {
-    height: 120px;
+h4 {
+    margin-top: -140px;
+}
+
+#select-city {
+    margin-bottom: 15px;
+}
+
+.form {
+    display: flex;
+    margin-top: -140px;
 }
 
 #history-section {
-    padding-left: 100px;
-    font-size: 18px;
+    padding-left: 60px;
+}
+
+#city-list {
+    position: absolute;
+    top: 75px;
+}
+
+#history-search:hover {
+    opacity: 0.7;
+    font-size: 12;
+    border: black 1px ;
 }
 
 #image-city:hover {
