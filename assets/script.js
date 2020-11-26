@@ -129,22 +129,23 @@ $(document).ready(function () {
 
        //----------------------------------------------------------------------------------------------------------------------------------//
 
-       // pixabay api - still awaiting full access, so doesn't work for most cities.
+       //pixabay api - gained full access, so is working for all cities now.
        $.ajax({
-        url: "https://pixabay.com/api/?key=19275947-8e03c0cef66a2d07d81888dc3&q="+ cityname + "+city+urban+afternoon&image_type=photo",
+        url: "https://pixabay.com/api/?key=19275947-8e03c0cef66a2d07d81888dc3&q="+ cityname + "+city+urban&image_type=photo",
         method: "GET",
       }).then(function (maps) {
         console.log(maps);
 
-        var cityImage = maps.hits[0];
-        console.log(cityImage.webformatURL);
+        var cityImage = maps.hits[4];
+        console.log(maps.hits[0]);
 
+        var image = $("<img>");
+        image.attr("src", cityImage.webformatURL);
+        image.attr("id", "image-city")
 
-
+        $("#id-card").append(image);
 
       })
-
-
 
     //----------------------------------------------------------------------------------------------------------------------------------//
 
