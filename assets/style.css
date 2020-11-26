@@ -73,3 +73,9 @@ h4 {
     filter: brightness(110%);
     cursor: pointer;
 }
+
+#clear-button {
+    margin-left: 160px;
+    position: absolute;
+    bottom: 0;
+}
