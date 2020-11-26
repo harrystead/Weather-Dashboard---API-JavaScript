@@ -245,6 +245,7 @@ $(document).ready(function () {
     var searchBtn = $(
       "<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>"
     ).text(cityname);
+    searchBtn.attr("id", "history-search")
     $("#history-section").append(searchBtn);
 
     //give it an onclick function - when button is pressed it retrieves the text within it,
