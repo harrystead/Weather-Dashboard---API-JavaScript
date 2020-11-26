@@ -127,9 +127,16 @@ $(document).ready(function () {
       });
     });
 
+       //----------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+    https://maps.googleapis.com/maps/api/place/photo?photoreference=PHOTO_REF&key=API_KEY&maxwidth=400&maxheight=400
+
     //----------------------------------------------------------------------------------------------------------------------------------//
 
-    // third api call for five day forecast.
+    // fourth api call for five day forecast.
 
     var queryForecast = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
@@ -148,7 +155,7 @@ $(document).ready(function () {
       for (var i = 0; i < results.length; i += 8) {
         //build five cards with required information
         var cardBody = $(
-          "<div class='card shadow-lg text-white bg-primary mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem;'>"
+          "<div class='card shadow-lg text-white bg-primary mx-auto mb-10 p-2' style='width: 11rem; height: 13rem;'>"
         );
         cardBody.attr("id", "card-body");
 

@@ -8,4 +8,7 @@
     cursor: pointer;
 }
 
-
+#card-body {
+    width: 300px;
+    height: 300px;
+}
