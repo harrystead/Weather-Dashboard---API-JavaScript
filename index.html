@@ -1,60 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Weather Dashboard</title>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/style.css">
-
-</head>
-
-<body>
-  <div class="container-fluid text-center text-light bg-dark">
-    <h1>Weather Forecast Dashboard</h1>
-</div>
-<div class="container">
-    <div class="clearfix">
+  <body>
+    <div class="container-fluid text-center text-light bg-dark">
+      <h1>Weather Forecast Dashboard</h1>
+    </div>
+    <div class="container">
+      <div class="clearfix">
         <div class="col-4 float-left">
-            <nav class="navbar navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded" style="height: 40rem;">
-                <h4>Search for a City:</h4>
-                    <form class="form">
-                        <input id="city-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button id="select-city" class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                <form id="history-section" class="mt-1">
-                    <ul id="city-list">
-                        
-                    </ul>
-                </form>
-            </nav>
-            <!--Trying out on-click within html - in this case, to refresh the page and clear local storage-->
-            <button id="clear-button" onClick="localStorage.clear(), window.location.reload()" class="btn btn-primary my-2 my-sm-0" type="submit">Clear</button>
-
+          <nav
+            class="navbar navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded"
+            style="height: 40rem"
+          >
+            <h4>Search for a City:</h4>
+            <form class="form">
+              <input
+                id="city-input"
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                id="select-city"
+                class="btn btn-primary my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+            <form id="history-section" class="mt-1">
+              <ul id="city-list"></ul>
+            </form>
+          </nav>
+          <!--Trying out on-click within html - in this case, to refresh the page and clear local storage-->
+          <button
+            id="clear-button"
+            onClick="localStorage.clear(), window.location.reload()"
+            class="btn btn-primary my-2 my-sm-0"
+            type="submit"
+          >
+            Clear
+          </button>
         </div>
         <div class="col-8 float-right">
-            <div class="card bg-light text-dark p-2 rem shadow-lg p-3 mb-5 bg-white rounded" id="id-card" style="width: 750; height: 24rem;">
-                <div id="current">
+          <div
+            class="card bg-light text-dark p-2 rem shadow-lg p-3 mb-5 bg-white rounded"
+            id="id-card"
+            style="width: 750; height: 24rem"
+          >
+            <div id="current"></div>
 
-                </div>
-
-                <div id="uvl-display"></div>
-            </div>
-                <br>
-                <h2>5-Day Weather Forecast:</h2>
-            <div  id="five-day" class="row">
-            </div>
-        </div> 
+            <div id="uvl-display"></div>
+          </div>
+          <br />
+          <h2>5-Day Weather Forecast:</h2>
+          <div id="five-day" class="row"></div>
+        </div>
+      </div>
     </div>
-</div>
-  
 
-
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="assets\script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
-  <script src="https://kit.fontawesome.com/3d1525faf0.js" crossorigin="anonymous"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="assets\script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/3d1525faf0.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

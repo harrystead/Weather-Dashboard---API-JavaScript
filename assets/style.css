@@ -40,7 +40,8 @@ h4 {
 }
 
 #select-city {
-    margin-bottom: 15px;
+    position: relative;
+    top: 2px;
 }
 
 .form {
@@ -78,4 +79,23 @@ h4 {
     margin-left: 160px;
     position: absolute;
     bottom: 0;
+}
+
+@media (max-width: 56.25em) {
+    .form {
+        margin-top: -25rem;
+    } 
+    #city-input {
+        margin-top: 5px;
+    }
+    #history-search {
+        position: absolute;
+        left: -69.5px;
+        top: 90px;
+    }
+    #image-city {
+        display: none;
+    }
+
+
 }
